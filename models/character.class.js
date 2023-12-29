@@ -15,7 +15,6 @@ class Character extends MoveableObject {
     ];
     world;
 
-    currentImage = 0;
     walking_sound = new Audio('audio/running.mp3')
 
 
@@ -49,10 +48,7 @@ class Character extends MoveableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 //walk animation
-                let i = this.currentImage % this.IMAGES_WALKING.length;
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);
     }
