@@ -7,12 +7,23 @@ function init() {
 
 
 function startGame() {
-    document.getElementById('startGameButton').disabled = true;
+    document.getElementById('startGame').classList.add('d-none')
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     console.log('My Character is', world.character);
+    playBackgroundMusic();
 }
 
+
+function playBackgroundMusic() {
+    const audio = new Audio('audio/music.mp3');
+    audio.play();
+}
+function fullscreen() {
+    let element = document.getElementById('canvas');
+
+    element.requestFullscreen();
+}
 
 
 window.addEventListener("keydown", (e) => {

@@ -3,9 +3,54 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: rgb(54, 54, 54);
+    margin: 0 !important;
 }
 
 canvas {
     background-color: black;
 }
 
+.canvas {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.startGameScreen {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.startGameScreen button {
+    z-index: 2;
+    position: absolute;
+    background-color: transparent;
+    border: none;
+}
+
+.startGameScreen button :hover {
+    cursor: pointer;
+}
+
+.startGameScreen img {
+    z-index: 1;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+svg {
+    background-color: transparent !important;
+    filter: drop-shadow(0 0 0 0.3);
+}

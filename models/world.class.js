@@ -5,7 +5,10 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new StatusBar();
+    HealthstatusBar = new HeathStatusBar();
+    CoinstatusBar = new CoinStatusBar();
+    BottlestatusBar = new BottleStatusBar();
+
     throwableObjects = [new ThrowableObject()];
 
 
@@ -35,7 +38,7 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                this.HealthstatusBar.setPercentage(this.character.energy);
             }
 
         });
@@ -43,8 +46,13 @@ class World {
 
     checkThrownObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
-            this.throwableObjects.push(bottle);
+            if (this.BottlestatusBar.percentageBottle > 0) {
+                this.BottlestatusBar.setPercentage();
+                this.BottlestatusBar.percentageBottle -= 10;
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+                this.throwableObjects.push(bottle);
+            }
+
         }
     }
 
@@ -60,7 +68,10 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         //space for fixed objects -----
-        this.addToMap(this.statusBar);
+        this.addToMap(this.HealthstatusBar);
+        this.addToMap(this.CoinstatusBar);
+        this.addToMap(this.BottlestatusBar);
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character)
