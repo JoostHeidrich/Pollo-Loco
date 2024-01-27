@@ -4,8 +4,6 @@ class MoveableObject extends DrawableObject {
     acceleration = 2.5;
     otherDirection = false;
     energy = 100;
-
-
     lastHit = 0;
 
     applyGravity() {

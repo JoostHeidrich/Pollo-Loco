@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    endbos = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -42,6 +43,34 @@ class World {
             }
 
         });
+
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                this.level.coins.splice(index, 1);
+                this.CoinstatusBar.percentageCoin += 10;
+                this.CoinstatusBar.setPercentage();
+
+            }
+
+        });
+
+        this.level.bottle.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle)) {
+                this.level.bottle.splice(index, 1);
+                this.BottlestatusBar.percentageBottle += 10;
+                this.BottlestatusBar.setPercentage();
+
+            }
+
+        });
+
+        this.throwableObjects.forEach((bottle,) => {
+            if (this.endbos.isColliding(bottle)) {
+                console.log('test');
+
+            }
+
+        });
     }
 
     checkThrownObjects() {
@@ -75,7 +104,10 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character)
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);

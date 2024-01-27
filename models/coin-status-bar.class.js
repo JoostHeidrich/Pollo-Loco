@@ -19,25 +19,25 @@ class CoinStatusBar extends DrawableObject {
         this.y = 60;
         this.width = 250;
         this.height = 80;
-        this.setPercentage(100);
+        this.setPercentage();
     }
 
-    setPercentage(percentage) {
-        this.percentage = percentage;
-        let pathCoin = this.ImagesCoin[this.resolveImageIndex(percentage)];
+    setPercentage() {
+        this.percentageCoin = this.percentageCoin;
+        let pathCoin = this.ImagesCoin[this.resolveImageIndex()];
         this.img = this.imageCache[pathCoin];
     }
 
-    resolveImageIndex(percentage) {
-        if (percentage == 100) {
+    resolveImageIndex() {
+        if (this.percentageCoin > 99) {
             return 5;
-        } else if (percentage > 80) {
+        } else if (this.percentageCoin > 80) {
             return 4;
-        } else if (percentage > 60) {
+        } else if (this.percentageCoin > 60) {
             return 3;
-        } else if (percentage > 40) {
+        } else if (this.percentageCoin > 40) {
             return 2;
-        } else if (percentage > 20) {
+        } else if (this.percentageCoin > 20) {
             return 1;
         } else {
             return 0;
