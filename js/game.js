@@ -8,12 +8,12 @@ function init() {
 
 
 function startGame() {
-    document.getElementById('startGame').classList.add('d-none');
-    document.getElementById('gameOver').classList.add('d-none');
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     console.log('My Character is', world.character);
     playBackgroundMusic();
+    document.getElementById('startGame').classList.add('d-none');
+    document.getElementById('gameOver').classList.add('d-none');
 }
 
 

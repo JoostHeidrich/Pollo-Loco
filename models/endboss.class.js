@@ -45,7 +45,6 @@ class Endboss extends MoveableObject {
                 this.moveLeft();
                 this.movingLeft = true;
                 this.otherDirection = false;
-                console.log('left');
             } else {
                 clearInterval(move);
                 this.movingLeft = false;
@@ -64,7 +63,6 @@ class Endboss extends MoveableObject {
                 this.moveRight();
                 this.movingRight = true;
                 this.otherDirection = true;
-                console.log('right');
             } else {
                 clearInterval(changeDirection);
                 this.movingRight = false;

@@ -12,7 +12,7 @@ class World {
     BossstatusBar = new BossStatusBar();
     gameOver = false;
 
-    throwableObjects = [new ThrowableObject()];
+    thrownBottle = [new thrownBottle()];
 
 
     constructor(canvas, keyboard) {
@@ -30,19 +30,26 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkThrownObjects();
-
+            this.checkRotaterCharacter();
             this.checkCollisions();
+        }, 10);
+
+        setInterval(() => {
+            this.checkThrownObjects();
         }, 200);
     }
 
     checkCollisions() {
-        //check collosion
-        this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.HealthstatusBar.setPercentage(this.character.energy);
-            }
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isJumpingOn(enemy)) {
+
+                this.level.enemies[index].deadChicken(index);
+
+            } else
+                if (this.character.isColliding(enemy) && this.chickenDead(enemy)) {
+                    this.character.hit();
+                    this.HealthstatusBar.setPercentage(this.character.energy);
+                }
 
         });
 
@@ -66,27 +73,41 @@ class World {
 
         });
 
-        this.throwableObjects.forEach((bottle, index) => {
+        this.thrownBottle.forEach((bottle, index) => {
             if (this.endboss.isColliding(bottle)) {
                 this.BossstatusBar.percentageBoss -= 10;
-                this.throwableObjects.splice(index, 1)
+                this.thrownBottle.splice(index, 1)
                 this.BossstatusBar.setPercentage();
             }
         });
+
     }
+
+    chickenDead(enemy) {
+        return enemy.allive
+    }
+
 
     checkThrownObjects() {
         if (this.keyboard.D) {
-            if (this.BottlestatusBar.percentageBottle > 0) {
+
+            if (this.BottlestatusBar.percentageBottle > 0 && this.character.otherDirection == false) {
                 this.BottlestatusBar.setPercentage();
                 this.BottlestatusBar.percentageBottle -= 10;
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
-                this.throwableObjects.push(bottle);
-            }
-
+                let bottle = new thrownBottle(this.character.x + 100, this.character.y + 100, '+')
+                this.thrownBottle.push(bottle);
+            } else
+                if (this.BottlestatusBar.percentageBottle > 0 && this.character.otherDirection == true) {
+                    this.BottlestatusBar.setPercentage();
+                    this.BottlestatusBar.percentageBottle -= 10;
+                    let bottle = new thrownBottle(this.character.x, this.character.y + 100, '-')
+                    this.thrownBottle.push(bottle);
+                }
         }
     }
 
+    checkRotaterCharacter() {
+    }
 
 
     draw() {
@@ -117,7 +138,7 @@ class World {
 
         this.addObjectsToMap(this.level.endboss);
 
-        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.thrownBottle);
 
         this.ctx.translate(-this.camera_x, 0);
 

@@ -1,13 +1,12 @@
-class ThrowableObject extends MoveableObject {
-
+class thrownBottle extends MoveableObject {
     throwing_Sound = new Audio('audio/throw.mp3')
 
-    constructor(x, y) {
+    constructor(x, y, direction) {
         super();
-        this.throw(x, y);
+        this.throw(x, y, direction);
     }
 
-    throw(x, y) {
+    throw(x, y, direction) {
 
         this.x = x;
         this.y = y;
@@ -21,18 +20,16 @@ class ThrowableObject extends MoveableObject {
         this.speedY = 30;
         this.applyGravity();
         this.throwing_Sound.play();
-        if (this.MoveableObject == 2000) {
-
+        if (direction == '+') {
             setInterval(() => {
                 this.x += 10;
             }, 25);
         } else {
-
             setInterval(() => {
                 this.x -= 10;
             }, 25);
         }
 
-    }
 
+    }
 }

@@ -15,10 +15,12 @@ class MoveableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) {
+        if (this instanceof thrownBottle) {
             return true;
-        } else {
-            return this.y < 130;
+        } else if (this instanceof Chicken) {
+            return true;
+        }else {
+            return this.y < 110;
         }
     }
 
@@ -27,17 +29,27 @@ class MoveableObject extends DrawableObject {
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height
+    }
 
-
+    isJumpingOn(mo) {
+        return this.x + this.width > mo.x &&
+            this.x < mo.x &&
+            this.y + this.height < 370 &&
+            this.y + this.height > 340 &&
+            this.speedY < -5
     }
 
     hit() {
-        this.energy -= 5;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+
+        if (timepassed > 1) {
+            this.energy -= 10;
             this.lastHit = new Date().getTime();
-        }
+        } else
+            if (this.energy < 0) {
+                this.energy = 0;
+            }
     }
 
     isHurt() {
@@ -51,6 +63,13 @@ class MoveableObject extends DrawableObject {
     }
 
     playAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
+    playAnimationOnce(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
