@@ -33,6 +33,7 @@ canvas {
     justify-content: center;
 }
 
+
 .startGameScreen button {
     z-index: 2;
     position: absolute;
@@ -58,4 +59,54 @@ svg {
 
 .fullscreenButton {
     z-index: 10;
+}
+
+.gameOver {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameOver img {
+    z-index: 1;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+.gameOver button {
+    z-index: 2;
+    position: absolute;
+}
+
+.win {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.win img {
+    z-index: 1;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+
+@media only screen and (max-width:720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height:480px) {
+    canvas {
+        height: 100vh;
+    }
 }

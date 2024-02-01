@@ -1,6 +1,6 @@
 class World {
     character = new Character();
-    endbos = new Endboss();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -9,6 +9,8 @@ class World {
     HealthstatusBar = new HeathStatusBar();
     CoinstatusBar = new CoinStatusBar();
     BottlestatusBar = new BottleStatusBar();
+    BossstatusBar = new BossStatusBar();
+    gameOver = false;
 
     throwableObjects = [new ThrowableObject()];
 
@@ -64,12 +66,12 @@ class World {
 
         });
 
-        this.throwableObjects.forEach((bottle,) => {
-            if (this.endbos.isColliding(bottle)) {
-                console.log('test');
-
+        this.throwableObjects.forEach((bottle, index) => {
+            if (this.endboss.isColliding(bottle)) {
+                this.BossstatusBar.percentageBoss -= 10;
+                this.throwableObjects.splice(index, 1)
+                this.BossstatusBar.setPercentage();
             }
-
         });
     }
 
@@ -103,11 +105,18 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
 
+
+        for (let i = 0; i < this.BossstatusBar.ImagesHealth.length; i++) {
+            this.addToMap(this.BossstatusBar);
+        }
+
         this.addToMap(this.character)
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.enemies);
+
         this.addObjectsToMap(this.level.endboss);
+
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);

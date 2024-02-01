@@ -13,9 +13,18 @@ class Coin extends MoveableObject {
         super().loadImage(this.IMAGES_COIN[0]);
         this.loadImages(this.IMAGES_COIN);
 
-        this.x = 200 + Math.random() * 6000;
+        this.setX();
         this.animate();
     }
+
+    setX() {
+        this.x = 200 + Math.random() * 6000;
+        if (this.x < 2800) {
+        } else {
+            this.setX();
+        }
+    }
+    
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);

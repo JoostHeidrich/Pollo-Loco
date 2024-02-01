@@ -21,11 +21,18 @@ class ThrowableObject extends MoveableObject {
         this.speedY = 30;
         this.applyGravity();
         this.throwing_Sound.play();
+        if (this.MoveableObject == 2000) {
 
-        setInterval(() => {
-            this.x += 10;
-        }, 25);
+            setInterval(() => {
+                this.x += 10;
+            }, 25);
+        } else {
 
+            setInterval(() => {
+                this.x -= 10;
+            }, 25);
+        }
 
     }
+
 }

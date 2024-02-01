@@ -18,8 +18,8 @@ class HeathStatusBar extends DrawableObject {
         this.loadImages(this.ImagesHealth);
         this.x = 20;
         this.y = 0;
-        this.width = 250;
-        this.height = 80;
+        this.width = 185;
+        this.height = 60;
         this.setPercentage(100);
     }
 
@@ -27,7 +27,14 @@ class HeathStatusBar extends DrawableObject {
         this.percentage = percentage;
         let pathHealth = this.ImagesHealth[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[pathHealth];
+        if (this.percentage < 1) {
+            document.getElementById('gameOver').classList.remove('d-none');
+            this.clearAllIntervals();
+        }
+    }
 
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 
     resolveImageIndex(percentage) {

@@ -4,6 +4,7 @@ class Character extends MoveableObject {
     height = 300;
     y = 100;
     speed = 10;
+    otherDirection = false;
 
     IMAGES_WALKING = [
         './img/2_character_pepe/2_walk/W-21.png',
@@ -102,7 +103,7 @@ class Character extends MoveableObject {
                             this.playAnimation(this.IMAGES_WALKING);
                         }
                     }
-        }, 50);
+        }, 100);
     }
 
     jump() {

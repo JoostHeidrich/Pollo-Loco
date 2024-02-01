@@ -6,6 +6,8 @@ class DrawableObject {
     y = 280;
     height = 150;
     width = 100;
+    bossHealth = 2500;
+
 
     loadImage(path) {
         this.img = new Image();
@@ -30,7 +32,7 @@ class DrawableObject {
 
     drawFrame(ctx) {
 
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';

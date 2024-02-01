@@ -1,6 +1,6 @@
 class level {
     enemies;
-    endboss
+    endboss;
     coins;
     bottle;
     clouds;

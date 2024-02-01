@@ -2,7 +2,6 @@ class MoveableObject extends DrawableObject {
     speed = 0.15;
     speedY = 0;
     acceleration = 2.5;
-    otherDirection = false;
     energy = 100;
     lastHit = 0;
 
@@ -27,7 +26,8 @@ class MoveableObject extends DrawableObject {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
-            this.y < mo.y + mo.height;
+            this.y < mo.y + mo.height
+
 
     }
 
@@ -64,5 +64,9 @@ class MoveableObject extends DrawableObject {
 
     moveLeft() {
         this.x -= this.speed;
+    }
+
+    moveRight() {
+        this.x += this.speed;
     }
 }
