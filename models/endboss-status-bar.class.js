@@ -1,7 +1,7 @@
 class BossStatusBar extends MoveableObject {
     percentageBoss = 100;
     speed = 1;
-    position = 500;
+    position = 1000;
     otherDirection = false;
 
     ImagesHealth = [
@@ -18,7 +18,7 @@ class BossStatusBar extends MoveableObject {
     constructor() {
         super();
         this.loadImages(this.ImagesHealth);
-        this.x = 2550;
+        this.x = 8000;
         this.y = 37;
         this.width = 185;
         this.height = 60;
@@ -45,7 +45,7 @@ class BossStatusBar extends MoveableObject {
 
     changeDirection() {
         let changeDirection = setInterval(() => {
-            if (this.position < 500) {
+            if (this.position < 1000) {
                 this.position += 1;
                 this.moveRight();
                 this.otherDirection = true;

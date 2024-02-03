@@ -4,7 +4,7 @@ class Endboss extends MoveableObject {
     height = 400;
     y = 50;
     speed = 1;
-    position = 500;
+    position = 1000;
     otherDirection = false;
     movingRight = false;
     movingLeft = false;
@@ -32,7 +32,7 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_BOSS);
         this.loadImages(this.IMAGES_BOSS_MOVING);
 
-        this.x = 2500;
+        this.x = 8000;
         this.move();
         this.animate();
     }
@@ -58,7 +58,7 @@ class Endboss extends MoveableObject {
 
     changeDirection() {
         let changeDirection = setInterval(() => {
-            if (this.position < 500) {
+            if (this.position < 1000) {
                 this.position += 1;
                 this.moveRight();
                 this.movingRight = true;

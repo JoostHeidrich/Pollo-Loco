@@ -3,13 +3,25 @@ body {
     flex-direction: column;
     align-items: center;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
     background-image: url(img/10_background/background.png);
     margin: 0 !important;
 }
 
-canvas {
-    background-color: black;
+/* #mainContent {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 !important;
 }
+
+
 
 .canvas {
     position: absolute;
@@ -34,23 +46,26 @@ canvas {
 }
 
 
+
+.startButton {
+    border: solid 3px #9f3b18;
+    background-color: #ffc422 !important;
+    padding: 10px !important;
+    font-size: 30px;
+}
+
 .startGameScreen button {
     z-index: 2;
     position: absolute;
     background-color: transparent;
-    border: none;
+    padding: 0;
 }
 
-.startGameScreen button :hover {
+.startGameScreen button:hover {
     cursor: pointer;
 }
 
-.startGameScreen img {
-    z-index: 1;
-    position: absolute;
-    width: 720px;
-    height: 480px;
-}
+
 
 svg {
     background-color: transparent !important;
@@ -70,6 +85,106 @@ svg {
     justify-content: center;
 }
 
+
+
+.gameOver button {
+    z-index: 2;
+    position: absolute;
+}
+
+
+
+
+
+.playAgain {
+    z-index: 2;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    margin-top: 280px;
+}
+
+.playAgain:hover {
+    cursor: pointer;
+}
+
+.startScreenControlls {
+    border: none !important;
+    display: flex;
+    gap: 60px;
+    margin-top: 20px;
+    margin-right: 60px;
+    justify-content: flex-end;
+}
+
+.startScreenControlls svg {
+    border: none;
+}
+
+.startScreenControlls button {
+    border: none;
+}
+
+.startGameScreenButtonContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+.startButton {
+
+    z-index: 2;
+    position: absolute;
+    margin: 10px;
+    width: 180px;
+    height: 70px;
+}
+
+.fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+@media only screen and (max-width:720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height:480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
+
+
+
+.startGameScreenButtons {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+.startGameScreenButton {
+    width: 720px;
+    height: 480px;
+}
+
+.startGameScreenButton {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+
+}
+
 .gameOver img {
     z-index: 1;
     position: absolute;
@@ -77,27 +192,89 @@ svg {
     height: 480px;
 }
 
-.gameOver button {
-    z-index: 2;
-    position: absolute;
-}
-
-.win {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.win img {
+.startGameScreen img {
     z-index: 1;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+} */
+
+
+/* new */
+
+.d-none {
+    display: none !important;
+}
+
+canvas {
+    background-color: #F4AC58;
+    position: absolute;
+}
+
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+}
+
+.contentCanvas {
     position: absolute;
     width: 720px;
     height: 480px;
 }
 
+.header {
+    position: absolute;
+}
+
+#startIMG {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+.startButton {
+    border: solid 3px #9f3b18;
+    background-color: #ffc422 !important;
+    padding: 10px !important;
+    font-size: 30px;
+}
+
+.fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.gameOver {
+    width: 720px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+}
+
+.gameOver img {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    object-fit: cover;
+}
+
+.playAgain {
+    position: absolute;
+    z-index: 10;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    margin-top: 340px;
+}
+
+.playAgain:hover {
+    cursor: pointer;
+}
 
 @media only screen and (max-width:720px) {
     canvas {

@@ -17,8 +17,8 @@ class Bottle extends MoveableObject {
     }
 
     setX() {
-        this.x = 200 + Math.random() * 6000;
-        if (this.x < 2800) {
+        this.x = 200 + Math.random() * 60000;
+        if (this.x < 6000) {
         } else {
             this.setX();
         }

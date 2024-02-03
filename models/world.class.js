@@ -46,7 +46,7 @@ class World {
                 this.level.enemies[index].deadChicken(index);
 
             } else
-                if (this.character.isColliding(enemy) && this.chickenDead(enemy)) {
+                if (this.character.isCollidingEnemy(enemy) && this.chickenDead(enemy)) {
                     this.character.hit();
                     this.HealthstatusBar.setPercentage(this.character.energy);
                 }
@@ -54,7 +54,7 @@ class World {
         });
 
         this.level.coins.forEach((coin, index) => {
-            if (this.character.isColliding(coin)) {
+            if (this.character.isCollidingCoin(coin)) {
                 this.level.coins.splice(index, 1);
                 this.CoinstatusBar.percentageCoin += 10;
                 this.CoinstatusBar.setPercentage();
@@ -64,7 +64,7 @@ class World {
         });
 
         this.level.bottle.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle)) {
+            if (this.character.isCollidingBottle(bottle) && this.BottlestatusBar.percentageBottle < 100) {
                 this.level.bottle.splice(index, 1);
                 this.BottlestatusBar.percentageBottle += 10;
                 this.BottlestatusBar.setPercentage();
@@ -74,7 +74,7 @@ class World {
         });
 
         this.thrownBottle.forEach((bottle, index) => {
-            if (this.endboss.isColliding(bottle)) {
+            if (this.endboss.isCollidingBottle(bottle)) {
                 this.BossstatusBar.percentageBoss -= 10;
                 this.thrownBottle.splice(index, 1)
                 this.BossstatusBar.setPercentage();

@@ -19,16 +19,30 @@ class MoveableObject extends DrawableObject {
             return true;
         } else if (this instanceof Chicken) {
             return true;
-        }else {
+        } else {
             return this.y < 110;
         }
     }
 
-    isColliding(mo) {
+    isCollidingCoin(mo) {
+        return this.x + (this.width / 2) > mo.x &&
+            this.x + (this.width / 2) - mo.width < mo.x &&
+            this.y < mo.y
+    }
+
+    isCollidingEnemy(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
-            this.y < mo.y + mo.height
+            this.y < mo.y + mo.height;
+
+    }
+
+    isCollidingBottle(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
     }
 
     isJumpingOn(mo) {

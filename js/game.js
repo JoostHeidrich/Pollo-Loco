@@ -12,8 +12,11 @@ function startGame() {
     world = new World(canvas, keyboard);
     console.log('My Character is', world.character);
     playBackgroundMusic();
-    document.getElementById('startGame').classList.add('d-none');
-    document.getElementById('gameOver').classList.add('d-none');
+    // document.getElementById('gameOver').classList.add('d-none');
+    document.getElementById('win').classList.add('d-none');
+    document.getElementById('startIMG').classList.add('d-none');
+    document.getElementById('startButton').classList.add('d-none');
+
 }
 
 
@@ -22,8 +25,9 @@ function playBackgroundMusic() {
     audio.play();
 }
 function fullscreen() {
-    let element = document.getElementById('canvas');
-
+    let element = document.getElementById('content');
+    document.getElementById('canvas').classList.add('fullscreen');
+    // element.style.add('display: block');
     element.requestFullscreen();
 }
 

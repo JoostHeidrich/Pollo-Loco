@@ -2,7 +2,7 @@ class Coin extends MoveableObject {
 
     height = 200;
     width = 200;
-    y = 150;
+    y = 100;
 
     IMAGES_COIN = [
         'img/8_coin/coin_1.png',
@@ -18,8 +18,8 @@ class Coin extends MoveableObject {
     }
 
     setX() {
-        this.x = 200 + Math.random() * 6000;
-        if (this.x < 2800) {
+        this.x = 200 + Math.random() * 60000;
+        if (this.x < 7000) {
         } else {
             this.setX();
         }
