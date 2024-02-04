@@ -46,13 +46,11 @@ function unmuteSound() {
 }
 
 function fullscreen() {
-    var contentElement = document.getElementById('contentCanvas');
-    var contentWidth = contentElement.offsetWidth;
-    if (contentWidth > 720) {
-        document.exitFullscreen();
-    } else {
-        document.getElementById('contentCanvas').requestFullscreen();
-    }
+    document.getElementById('contentCanvas').requestFullscreen();
+}
+
+function exitfullscreen() {
+    document.exitFullscreen();
 }
 
 

@@ -143,4 +143,20 @@ canvas {
     .ControllButtons {
         width: 100vw !important;
     }
+
+    #minimize {
+        margin-right: 20px !important;
+
+    }
+
+    #fullscreen {
+        display: none !important;
+    }
+}
+
+
+@media not all and (display-mode: fullscreen) {
+    #minimize {
+        display: none;
+    }
 }

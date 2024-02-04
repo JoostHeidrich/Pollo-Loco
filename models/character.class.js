@@ -5,7 +5,6 @@ class Character extends MoveableObject {
     speed = 10;
     otherDirection = false;
 
-
     IMAGES_Waiting = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
         'img/2_character_pepe/1_idle/idle/I-2.png',
@@ -84,7 +83,6 @@ class Character extends MoveableObject {
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
-                console.log(muteSounds);
                 this.otherDirection = false;
                 if (muteSounds === false) {
                     this.walking_sound.play();
@@ -102,7 +100,6 @@ class Character extends MoveableObject {
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
                 if (muteSounds === false) {
-                    console.log(muteSounds);
                     this.jumping_sound.play();
                 }
             }
