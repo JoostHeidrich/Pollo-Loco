@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 gameOver = false;
+muteSounds = false;
 
 function init() {
 }
@@ -11,25 +12,49 @@ function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     console.log('My Character is', world.character);
-    playBackgroundMusic();
-    // document.getElementById('gameOver').classList.add('d-none');
     document.getElementById('win').classList.add('d-none');
+    document.getElementById('gameOver').classList.add('d-none');
     document.getElementById('startIMG').classList.add('d-none');
     document.getElementById('startButton').classList.add('d-none');
-
+    playBackgroundMusic();
 }
 
 
 function playBackgroundMusic() {
-    const audio = new Audio('audio/music.mp3');
-    audio.play();
+    let audio = document.getElementById("myAudio");
+    if (muteSounds == false) {
+        audio.loop = true;
+        audio.play();
+    } else {
+        console.log('pause');
+        audio.pause();
+    }
 }
+
+function muteSound() {
+    document.getElementById('muteButton').classList.add('d-none');
+    document.getElementById('unmuteButton').classList.remove('d-none');
+    muteSounds = !muteSounds;
+    playBackgroundMusic();
+}
+
+function unmuteSound() {
+    document.getElementById('muteButton').classList.remove('d-none');
+    document.getElementById('unmuteButton').classList.add('d-none');
+    muteSounds = !muteSounds;
+    playBackgroundMusic();
+}
+
 function fullscreen() {
-    let element = document.getElementById('content');
-    document.getElementById('canvas').classList.add('fullscreen');
-    // element.style.add('display: block');
-    element.requestFullscreen();
+    var contentElement = document.getElementById('contentCanvas');
+    var contentWidth = contentElement.offsetWidth;
+    if (contentWidth > 720) {
+        document.exitFullscreen();
+    } else {
+        document.getElementById('contentCanvas').requestFullscreen();
+    }
 }
+
 
 if (this.gameOver == false) {
     window.addEventListener("keydown", (e) => {

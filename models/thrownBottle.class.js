@@ -19,7 +19,9 @@ class thrownBottle extends MoveableObject {
         this.width = 50;
         this.speedY = 30;
         this.applyGravity();
-        this.throwing_Sound.play();
+        if (muteSounds === false) {
+            this.throwing_Sound.play();
+        }
         if (direction == '+') {
             setInterval(() => {
                 this.x += 10;

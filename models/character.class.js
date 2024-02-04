@@ -1,5 +1,4 @@
 class Character extends MoveableObject {
-
     width = 160;
     height = 300;
     y = 130;
@@ -85,19 +84,27 @@ class Character extends MoveableObject {
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
-                this.walking_sound.play();
+                console.log(muteSounds);
                 this.otherDirection = false;
+                if (muteSounds === false) {
+                    this.walking_sound.play();
+                }
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
-                this.walking_sound.play();
+                if (muteSounds === false) {
+                    this.walking_sound.play();
+                }
                 this.otherDirection = true;
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.jumping_sound.play();
+                if (muteSounds === false) {
+                    console.log(muteSounds);
+                    this.jumping_sound.play();
+                }
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
