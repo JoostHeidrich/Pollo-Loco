@@ -54,12 +54,8 @@ class Character extends MoveableObject {
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
-
-
-
-
-
     world;
+    
 
     walking_sound = new Audio('audio/running.mp3')
     jumping_sound = new Audio('audio/jump.mp3')
@@ -104,6 +100,7 @@ class Character extends MoveableObject {
                 }
             }
             this.world.camera_x = -this.x + 100;
+
         }, 1000 / 60);
 
         setInterval(() => {

@@ -33,7 +33,7 @@ class Chicken extends MoveableObject {
     }
 
     setX() {
-        this.x = 200 + Math.random() * 20000;
+        this.x = 300 + Math.random() * 20000;
         if (this.x < 6000) {
         } else {
             this.setX();

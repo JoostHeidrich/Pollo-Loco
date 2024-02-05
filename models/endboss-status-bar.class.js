@@ -16,12 +16,16 @@ class BossStatusBar extends MoveableObject {
 
 
     constructor() {
-        super();
+        super().loadImage(this.ImagesHealth[0]);
         this.loadImages(this.ImagesHealth);
         this.x = 8000;
         this.y = 37;
         this.width = 185;
         this.height = 60;
+
+    }
+
+    start() {
         this.setPercentage();
         this.move();
     }

@@ -11,6 +11,8 @@ class World {
     BottlestatusBar = new BottleStatusBar();
     BossstatusBar = new BossStatusBar();
     gameOver = false;
+    startEndbossAnimation = false;
+    startEndbossAnimationMap = false;
 
     thrownBottle = [new thrownBottle()];
 
@@ -31,8 +33,8 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkRotaterCharacter();
             this.checkCollisions();
+            this.startEndbos();
         }, 10);
 
         setInterval(() => {
@@ -107,7 +109,12 @@ class World {
         }
     }
 
-    checkRotaterCharacter() {
+    startEndbos() {
+        if (this.character.x > 1000 && !this.startEndbossAnimation) {
+            this.startEndbossAnimation = true;
+            this.endboss.start();
+            this.BossstatusBar.start();
+        }
     }
 
 
@@ -126,11 +133,6 @@ class World {
         this.addToMap(this.BottlestatusBar);
 
         this.ctx.translate(this.camera_x, 0);
-
-
-        for (let i = 0; i < this.BossstatusBar.ImagesHealth.length; i++) {
-            this.addToMap(this.BossstatusBar);
-        }
 
         this.addToMap(this.character)
         this.addObjectsToMap(this.level.coins);
