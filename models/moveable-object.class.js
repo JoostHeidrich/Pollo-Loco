@@ -90,11 +90,6 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
-    moveRight() {
-        this.x += this.speed;
-        this.walking_sound.play();
-    }
-
     moveLeft() {
         this.x -= this.speed;
     }

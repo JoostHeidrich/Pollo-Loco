@@ -12,8 +12,10 @@ class World {
     BossstatusBar = new BossStatusBar();
     gameOver = false;
     startEndbossAnimation = false;
-    startEndbossAnimationMap = false;
-
+    stopMovingBoss = false;
+    allertboss = false;
+    bossResetWalking = false;
+    
     thrownBottle = [new thrownBottle()];
 
 
@@ -35,7 +37,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.startEndbos();
-        }, 10);
+        }, 1000 / 60);
 
         setInterval(() => {
             this.checkThrownObjects();
@@ -110,10 +112,15 @@ class World {
     }
 
     startEndbos() {
-        if (this.character.x > 1000 && !this.startEndbossAnimation) {
+        let character1 = this.character.x + 300;
+        let character2 = this.character.x - 100;
+
+
+        if (character1 > this.endboss.x && character2 < this.endboss.x && !this.startEndbossAnimation) {
+            console.log('xxx');
             this.startEndbossAnimation = true;
+            this.stopMovingBoss = true;
             this.endboss.start();
-            this.BossstatusBar.start();
         }
     }
 

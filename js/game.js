@@ -1,5 +1,6 @@
 let canvas;
 let world;
+let valiables;
 let keyboard = new Keyboard();
 gameOver = false;
 muteSounds = false;
@@ -11,6 +12,7 @@ function init() {
 function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    valiables = new Valiables();
     console.log('My Character is', world.character);
     document.getElementById('win').classList.add('d-none');
     document.getElementById('gameOver').classList.add('d-none');
