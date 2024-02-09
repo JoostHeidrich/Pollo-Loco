@@ -14,23 +14,19 @@ function startGame() {
     world = new World(canvas, keyboard);
     valiables = new Valiables();
     console.log('My Character is', world.character);
-    document.getElementById('win').classList.add('d-none');
-    document.getElementById('gameOver').classList.add('d-none');
-    document.getElementById('startIMG').classList.add('d-none');
-    document.getElementById('startButton').classList.add('d-none');
     playBackgroundMusic();
 }
 
 
 function playBackgroundMusic() {
-    let audio = document.getElementById("myAudio");
-    if (muteSounds == false) {
-        audio.loop = true;
-        audio.play();
-    } else {
-        console.log('pause');
-        audio.pause();
-    }
+    // let audio = document.getElementById("myAudio");
+    // if (muteSounds == false) {
+    //     audio.loop = true;
+    //     audio.play();
+    // } else {
+    //     console.log('pause');
+    //     audio.pause();
+    // }
 }
 
 function muteSound() {

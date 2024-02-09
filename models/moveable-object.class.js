@@ -4,6 +4,7 @@ class MoveableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    character;
 
     applyGravity() {
         setInterval(() => {
@@ -60,6 +61,7 @@ class MoveableObject extends DrawableObject {
         if (timepassed > 1) {
             this.energy -= 10;
             this.lastHit = new Date().getTime();
+            this.world.character.hitsound();
         } else
             if (this.energy < 0) {
                 this.energy = 0;
@@ -77,11 +79,11 @@ class MoveableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImage % images.length;
+        let i = this.currentImage % images.length; //modulo
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-    }
+      }
 
     playAnimationOnce(images) {
         let i = this.currentImage % images.length;

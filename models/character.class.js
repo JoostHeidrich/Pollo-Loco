@@ -2,7 +2,7 @@ class Character extends MoveableObject {
     width = 160;
     height = 300;
     y = 130;
-    speed = 10;
+    speed = 30;
     otherDirection = false;
 
     IMAGES_Waiting = [
@@ -55,10 +55,11 @@ class Character extends MoveableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
     world;
-    
 
-    walking_sound = new Audio('audio/running.mp3')
-    jumping_sound = new Audio('audio/jump.mp3')
+
+    walking_sound = new Audio('audio/running.mp3');
+    jumping_sound = new Audio('audio/jump.mp3');
+    hurt_sound = new Audio('audio/hurt.mp3');
 
 
     constructor() {
@@ -70,6 +71,11 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
+    }
+
+    hitsound() {
+            console.log('hit');
+            this.hurt_sound.play();   
     }
 
     animate() {

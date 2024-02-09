@@ -4,7 +4,6 @@ class Endboss extends MoveableObject {
     height = 400;
     y = 50;
     speed = 1;
-    position = 1000;
     otherDirection = false;
     moving = false;
     x = 8000;
@@ -14,26 +13,18 @@ class Endboss extends MoveableObject {
     IMAGES_BOSS_Allert = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G5.png',
-        'img/4_enemie_boss_chicken/2_alert/G5.png',
-        'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G7.png',
         'img/4_enemie_boss_chicken/2_alert/G7.png',
-        'img/4_enemie_boss_chicken/2_alert/G7.png',
-        'img/4_enemie_boss_chicken/2_alert/G8.png',
         'img/4_enemie_boss_chicken/2_alert/G8.png',
         'img/4_enemie_boss_chicken/2_alert/G8.png',
         'img/4_enemie_boss_chicken/2_alert/G9.png',
         'img/4_enemie_boss_chicken/2_alert/G9.png',
-        'img/4_enemie_boss_chicken/2_alert/G9.png',
-        'img/4_enemie_boss_chicken/2_alert/G10.png',
         'img/4_enemie_boss_chicken/2_alert/G10.png',
         'img/4_enemie_boss_chicken/2_alert/G10.png',
         'img/4_enemie_boss_chicken/2_alert/G11.png',
         'img/4_enemie_boss_chicken/2_alert/G11.png',
-        'img/4_enemie_boss_chicken/2_alert/G11.png',
-        'img/4_enemie_boss_chicken/2_alert/G12.png',
         'img/4_enemie_boss_chicken/2_alert/G12.png',
         'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
@@ -44,32 +35,46 @@ class Endboss extends MoveableObject {
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
+    IMAGES_BOSS_HIT = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png'
+
+
+    ]
     world;
     valiables;
+
+    allert_sound = new Audio('audio/bossAllert.mp3');
+    hurt_sound = new Audio('audio/hurtboss.mp3');
 
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_BOSS_Allert);
         this.loadImages(this.IMAGES_BOSS_MOVING);
+        this.loadImages(this.IMAGES_BOSS_HIT);
         this.animate();
         this.move();
     }
 
     start() {
+        this.allert_sound.play();
         world.allertboss = true;
+    }
+
+    hit() {
+        this.hurt_sound.play();
     }
 
     move() {
         let moveBoss = setInterval(() => {
-            if (world.stopMovingBoss === true) {
+            if (valiables.stopMovingBoss === true) {
                 clearInterval(moveBoss);
                 this.otherDirection = false;
             }
             else
-                if (this.position > 200 && this.stopMoving === false) {
-                    this.position -= 1;
-                    this.moveLeft();
-                    console.log('move left');
+                if (this.x > 6000 && this.stopMoving === false) {
+                    this.x -= this.speed;
                     this.moving = true;
                     this.otherDirection = false;
                 } else {
@@ -83,47 +88,53 @@ class Endboss extends MoveableObject {
 
     changeDirection() {
         let changeBossDirection = setInterval(() => {
-            if (world.stopMovingBoss === true) {
+            if (valiables.stopMovingBoss === true) {
                 clearInterval(changeBossDirection);
                 this.otherDirection = false;
             }
             else
-                if (this.position < 1000 && this.stopMoving === false) {
-                    this.position += 1;
-                    this.moveRight();
-                    console.log('move right');
+                if (this.x < 8000 && this.stopMoving === false) {
+                    this.x += this.speed;
                     this.moving = true;
                     this.otherDirection = true;
-                } else if (this.stopMoving === false) {
-                    this.moving = false;
-                    clearInterval(changeBossDirection);
-                    this.move();
-                }
+                } else
+                    if (this.stopMoving === false) {
+                        this.moving = false;
+                        clearInterval(changeBossDirection);
+                        this.move();
+                    }
         }, 1000 / 60);
     }
 
     animate() {
         let i = 0;
+        let x = 0
         setInterval(() => {
-            if (world.allertboss === true && i < 24) {
+            if (world.allertboss === true && i < 17) {
                 this.playAnimationOnce(this.IMAGES_BOSS_Allert);
                 i++
-                console.log(i);
                 world.bossResetWalking = true;
-            }
-            else {
-                this.playAnimation(this.IMAGES_BOSS_MOVING);
+            } else
+                if (valiables.endbossHitAnimation === true && x < 4) {
+                    this.playAnimation(this.IMAGES_BOSS_HIT);
+                    x++;
+                }
+                else {
+                    this.playAnimation(this.IMAGES_BOSS_MOVING);
+                }
+
+            if (x === 3 && valiables.endbossHitAnimation === true) {
+                valiables.endbossHitAnimation = false;
+                x = 0;
             }
 
-            if (i === 24 && world.bossResetWalking === true) {
-                console.log(this.position);
+            if (i === 16 && world.bossResetWalking === true) {
                 world.allertboss = false;
                 world.bossResetWalking = false;
-                world.stopMovingBoss = false;
+                valiables.stopMovingBoss = false;
                 this.stopMoving = false;
                 this.moving = false;
-                console.log('walk again');
-                if (this.position > 200) {
+                if (this.x > 6010) {
                     this.move();
                 } else {
                     this.changeDirection();

@@ -22,6 +22,8 @@ body {
 canvas {
     background-color: #F4AC58;
     position: absolute;
+    width: 720px;
+    height: 480px;
 }
 
 .content {
@@ -58,16 +60,18 @@ canvas {
 
 .startButton {
     width: 250px;
+    height: 60px;
     margin-top: 20px;
     transform: skew(-20deg);
     border: solid 3px #ba5b38;
-    background-color: #ffc422 !important;
+    background-color: #ffc422;
     padding: 10px !important;
     font-size: 30px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .ControllButtons {
+    z-index: 1;
     position: absolute;
     display: flex;
     justify-content: flex-end;
@@ -117,16 +121,75 @@ canvas {
     cursor: pointer;
 }
 
+.MobileControlls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    background: transparent;
+}
+
+.MobileControlls button {
+    margin-bottom: 20px !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 35px;
+    border: solid 3px #ba5b38;
+    background-color: #ffc422;
+}
+
+.MobileControlls button:hover {
+    cursor: pointer;
+}
+
+.mobileButtons {
+    display: flex;
+    z-index: 10;
+    gap: 20px !important;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
 @media only screen and (max-width:720px) {
-    canvas {
-        width: 100%;
+
+    canvas,
+    #startIMG,
+    .startButtonContainer,
+    .ControllButtons,
+    .ControllButtons,
+    .gameOver {
+        aspect-ratio: 3/2;
+        width: 100vw;
+        height: auto;
+    }
+
+    .startButtonContainer {
+        justify-content: start;
+    }
+
+    .contentCanvas {
+        aspect-ratio: 3/2;
+        width: 100vw;
+        height: auto;
+    }
+
+    .startButton {
+        margin-left: 20px;
     }
 }
 
 @media only screen and (max-height:480px) {
-    canvas {
+
+    canvas,
+    .contentCanvas,
+    #startIMG,
+    .startButtonContainer,
+    .ControllButtons,
+    .ControllButtons,
+    .gameOver {
         height: 100vh;
     }
+
 }
 
 @media all and (display-mode: fullscreen) {
@@ -134,7 +197,9 @@ canvas {
     #startIMG,
     #canvas,
     #win,
-    #gameOver {
+    #gameOver,
+    .startButtonContainer,
+    .MobileControlls {
         width: 100vw !important;
         height: 100vh !important;
     }
@@ -154,6 +219,26 @@ canvas {
     }
 }
 
+@media only screen and (max-width:650px) {
+    .startButton {
+        width: 150px !important;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .ControllButtons {
+        margin-top: 10px;
+    }
+
+    .ControllButtons svg {
+        width: 30px !important;
+    }
+
+    .playAgain svg {
+        width: 70px;
+    }
+}
 
 @media not all and (display-mode: fullscreen) {
     #minimize {

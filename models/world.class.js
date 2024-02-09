@@ -1,7 +1,7 @@
 class World {
     character = new Character();
-    endboss = new Endboss();
     level = level1;
+    endboss = this.level.endboss[0];
     canvas;
     ctx;
     keyboard;
@@ -12,12 +12,11 @@ class World {
     BossstatusBar = new BossStatusBar();
     gameOver = false;
     startEndbossAnimation = false;
-    stopMovingBoss = false;
     allertboss = false;
     bossResetWalking = false;
-    
-    thrownBottle = [new thrownBottle()];
 
+    thrownBottle = [];
+    removedthrownBottle = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -49,7 +48,7 @@ class World {
             if (this.character.isJumpingOn(enemy)) {
 
                 this.level.enemies[index].deadChicken(index);
-
+                valiables.crushChickenSound.play();
             } else
                 if (this.character.isCollidingEnemy(enemy) && this.chickenDead(enemy)) {
                     this.character.hit();
@@ -81,12 +80,22 @@ class World {
         this.thrownBottle.forEach((bottle, index) => {
             if (this.endboss.isCollidingBottle(bottle)) {
                 this.BossstatusBar.percentageBoss -= 10;
-                this.thrownBottle.splice(index, 1)
                 this.BossstatusBar.setPercentage();
+                valiables.endbossHitAnimation = true;
+
+                this.endboss.hit();
+
+                var removedItem = this.thrownBottle.splice(index, 1)[0];
+                this.removedthrownBottle.push(removedItem);
+                console.log(this.removedthrownBottle.length - 1);
+                this.removedthrownBottle[this.removedthrownBottle.length - 1].play(this.removedthrownBottle.length - 1);
+                valiables.bottlehitSound.play();
             }
         });
 
     }
+
+
 
     chickenDead(enemy) {
         return enemy.allive
@@ -117,13 +126,15 @@ class World {
 
 
         if (character1 > this.endboss.x && character2 < this.endboss.x && !this.startEndbossAnimation) {
-            console.log('xxx');
             this.startEndbossAnimation = true;
-            this.stopMovingBoss = true;
+            valiables.stopMovingBoss = true;
             this.endboss.start();
         }
     }
 
+    removeBottle(index) {
+        this.removedthrownBottle.splice(index, 1);
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -147,8 +158,10 @@ class World {
         this.addObjectsToMap(this.level.enemies);
 
         this.addObjectsToMap(this.level.endboss);
+        this.addToMap(this.BossstatusBar);
 
         this.addObjectsToMap(this.thrownBottle);
+        this.addObjectsToMap(this.removedthrownBottle);
 
         this.ctx.translate(-this.camera_x, 0);
 

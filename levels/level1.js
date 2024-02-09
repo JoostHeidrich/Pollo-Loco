@@ -143,4 +143,9 @@ function initlevel() {
         ]
 
     );
+
+    document.getElementById('win').classList.add('d-none');
+    document.getElementById('gameOver').classList.add('d-none');
+    document.getElementById('startIMG').classList.add('d-none');
+    document.getElementById('startButton').classList.add('d-none');
 }
