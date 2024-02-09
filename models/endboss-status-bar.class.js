@@ -40,14 +40,10 @@ class BossStatusBar extends MoveableObject {
         let percentageBoss = this.ImagesHealth[this.resolveImageIndex()];
         this.img = this.imageCache[percentageBoss];
         if (this.percentageBoss < 1) {
-            document.getElementById('win').classList.remove('d-none');
-            this.clearAllIntervals();
+            variables.BossDeath = true;
         }
     }
 
-    clearAllIntervals() {
-        for (let i = 1; i < 9999; i++) window.clearInterval(i);
-    }
 
     resolveImageIndex() {
         if (this.percentageBoss === 100) {

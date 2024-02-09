@@ -1,6 +1,6 @@
 class HeathStatusBar extends DrawableObject {
     percentageHealth = 100;
-
+    variables;
 
     ImagesHealth = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
@@ -28,13 +28,8 @@ class HeathStatusBar extends DrawableObject {
         let pathHealth = this.ImagesHealth[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[pathHealth];
         if (this.percentage < 1) {
-            document.getElementById('gameOver').classList.remove('d-none');
-            this.clearAllIntervals();
+            variables.deathPlayer = true;
         }
-    }
-
-    clearAllIntervals() {
-        for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 
     resolveImageIndex(percentage) {

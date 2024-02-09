@@ -74,8 +74,9 @@ class Character extends MoveableObject {
     }
 
     hitsound() {
-            console.log('hit');
-            this.hurt_sound.play();   
+        if (variables.muteSounds === false) {
+            this.hurt_sound.play();
+        }
     }
 
     animate() {
@@ -86,14 +87,14 @@ class Character extends MoveableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                if (muteSounds === false) {
+                if (variables.muteSounds === false) {
                     this.walking_sound.play();
                 }
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
-                if (muteSounds === false) {
+                if (variables.muteSounds === false) {
                     this.walking_sound.play();
                 }
                 this.otherDirection = true;
@@ -101,7 +102,7 @@ class Character extends MoveableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                if (muteSounds === false) {
+                if (variables.muteSounds === false) {
                     this.jumping_sound.play();
                 }
             }
@@ -109,20 +110,28 @@ class Character extends MoveableObject {
 
         }, 1000 / 60);
 
+        let i = 0;
+
         setInterval(() => {
-            if (this.isDead()) {
+            if (variables.deathPlayer === true && i < 7) {
                 this.playAnimation(this.IMAGES_DEAD);
+                i++
+                console.log('death');
             } else
-                if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT);
+                if (i === 7) {
+                    document.getElementById('gameOver').classList.remove('d-none');
+                    this.clearAllIntervals();
                 } else
-                    if (this.isAboveGround()) {
-                        this.playAnimation(this.IMAGES_JUMPING);
-                    } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                        this.playAnimation(this.IMAGES_WALKING);
-                    } else {
-                        this.playAnimation(this.IMAGES_Waiting);
-                    }
+                    if (this.isHurt()) {
+                        this.playAnimation(this.IMAGES_HURT);
+                    } else
+                        if (this.isAboveGround()) {
+                            this.playAnimation(this.IMAGES_JUMPING);
+                        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                            this.playAnimation(this.IMAGES_WALKING);
+                        } else {
+                            this.playAnimation(this.IMAGES_Waiting);
+                        }
         }, 100);
     }
 
@@ -130,4 +139,7 @@ class Character extends MoveableObject {
         this.speedY = 30;
     }
 
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    }
 }

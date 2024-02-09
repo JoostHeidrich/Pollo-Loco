@@ -35,15 +35,24 @@ class Endboss extends MoveableObject {
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
+
     IMAGES_BOSS_HIT = [
         'img/4_enemie_boss_chicken/4_hurt/G21.png',
         'img/4_enemie_boss_chicken/4_hurt/G22.png',
         'img/4_enemie_boss_chicken/4_hurt/G23.png'
+    ];
+
+    IMAGES_BOSS_DEATH = [
+        'img/4_enemie_boss_chicken/5_dead/G24.png',
+        'img/4_enemie_boss_chicken/5_dead/G25.png',
+        'img/4_enemie_boss_chicken/5_dead/G26.png',
+    ];
 
 
-    ]
+
+
     world;
-    valiables;
+    variables;
 
     allert_sound = new Audio('audio/bossAllert.mp3');
     hurt_sound = new Audio('audio/hurtboss.mp3');
@@ -53,22 +62,28 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_BOSS_Allert);
         this.loadImages(this.IMAGES_BOSS_MOVING);
         this.loadImages(this.IMAGES_BOSS_HIT);
+        this.loadImages(this.IMAGES_BOSS_DEATH);
         this.animate();
         this.move();
     }
 
     start() {
-        this.allert_sound.play();
-        world.allertboss = true;
+        if (variables.muteSounds == false) {
+            this.allert_sound.play();
+            world.allertboss = true;
+        }
     }
 
     hit() {
-        this.hurt_sound.play();
+        if (variables.muteSounds == false) {
+            this.hurt_sound.play();
+        }
     }
 
     move() {
         let moveBoss = setInterval(() => {
-            if (valiables.stopMovingBoss === true) {
+
+            if (variables.stopMovingBoss === true) {
                 clearInterval(moveBoss);
                 this.otherDirection = false;
             }
@@ -88,7 +103,8 @@ class Endboss extends MoveableObject {
 
     changeDirection() {
         let changeBossDirection = setInterval(() => {
-            if (valiables.stopMovingBoss === true) {
+
+            if (variables.stopMovingBoss === true) {
                 clearInterval(changeBossDirection);
                 this.otherDirection = false;
             }
@@ -108,30 +124,39 @@ class Endboss extends MoveableObject {
 
     animate() {
         let i = 0;
-        let x = 0
+        let x = 0;
+        let bossDeatchCount = 0;
         setInterval(() => {
-            if (world.allertboss === true && i < 17) {
-                this.playAnimationOnce(this.IMAGES_BOSS_Allert);
-                i++
-                world.bossResetWalking = true;
+            if (variables.BossDeath === true && bossDeatchCount < 3) {
+                this.playAnimation(this.IMAGES_BOSS_DEATH);
+                bossDeatchCount++;
             } else
-                if (valiables.endbossHitAnimation === true && x < 4) {
-                    this.playAnimation(this.IMAGES_BOSS_HIT);
-                    x++;
-                }
-                else {
-                    this.playAnimation(this.IMAGES_BOSS_MOVING);
-                }
+                if (world.allertboss === true && i < 17) {
+                    this.playAnimationOnce(this.IMAGES_BOSS_Allert);
+                    i++
+                    world.bossResetWalking = true;
+                } else
+                    if (variables.endbossHitAnimation === true && x < 4) {
+                        this.playAnimation(this.IMAGES_BOSS_HIT);
+                        x++;
+                    }
+                    else {
+                        this.playAnimation(this.IMAGES_BOSS_MOVING);
+                    }
 
-            if (x === 3 && valiables.endbossHitAnimation === true) {
-                valiables.endbossHitAnimation = false;
+            if (x === 3 && variables.endbossHitAnimation === true) {
+                variables.endbossHitAnimation = false;
                 x = 0;
+            }
+
+            if (bossDeatchCount === 3) {
+                this.clearAllIntervals();
             }
 
             if (i === 16 && world.bossResetWalking === true) {
                 world.allertboss = false;
                 world.bossResetWalking = false;
-                valiables.stopMovingBoss = false;
+                variables.stopMovingBoss = false;
                 this.stopMoving = false;
                 this.moving = false;
                 if (this.x > 6010) {
@@ -142,5 +167,10 @@ class Endboss extends MoveableObject {
             }
 
         }, 150);
+    }
+
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+        document.getElementById('win').classList.remove('d-none');
     }
 }

@@ -37,13 +37,12 @@ class thrownBottle extends MoveableObject {
         this.width = 50;
         this.speedY = 30;
         this.applyGravity();
-        if (muteSounds === false) {
+        if (variables.muteSounds === false) {
             this.throwing_Sound.play();
         }
         if (direction == '+') {
             setInterval(() => {
                 if (this.stopThrow === false) {
-                    console.log(this.stopThrow);
                     this.x += 10;
                 }
             }, 25);
@@ -68,7 +67,6 @@ class thrownBottle extends MoveableObject {
                     this.speedY = 0;
                     this.playAnimation(this.IMAGES_BREAK);
                     i++
-                    console.log(i);
                 } else if (i === 6) {
                     world.removeBottle(this.index);
                     i = 0;

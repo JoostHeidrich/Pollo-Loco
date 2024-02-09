@@ -48,7 +48,9 @@ class World {
             if (this.character.isJumpingOn(enemy)) {
 
                 this.level.enemies[index].deadChicken(index);
-                valiables.crushChickenSound.play();
+                if (variables.muteSounds == false) {
+                    variables.crushChickenSound.play();
+                }
             } else
                 if (this.character.isCollidingEnemy(enemy) && this.chickenDead(enemy)) {
                     this.character.hit();
@@ -81,15 +83,16 @@ class World {
             if (this.endboss.isCollidingBottle(bottle)) {
                 this.BossstatusBar.percentageBoss -= 10;
                 this.BossstatusBar.setPercentage();
-                valiables.endbossHitAnimation = true;
+                variables.endbossHitAnimation = true;
 
                 this.endboss.hit();
 
                 var removedItem = this.thrownBottle.splice(index, 1)[0];
                 this.removedthrownBottle.push(removedItem);
-                console.log(this.removedthrownBottle.length - 1);
                 this.removedthrownBottle[this.removedthrownBottle.length - 1].play(this.removedthrownBottle.length - 1);
-                valiables.bottlehitSound.play();
+                if (variables.muteSounds == false) {
+                    variables.bottlehitSound.play();
+                }
             }
         });
 
@@ -127,7 +130,7 @@ class World {
 
         if (character1 > this.endboss.x && character2 < this.endboss.x && !this.startEndbossAnimation) {
             this.startEndbossAnimation = true;
-            valiables.stopMovingBoss = true;
+            variables.stopMovingBoss = true;
             this.endboss.start();
         }
     }
