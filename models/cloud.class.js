@@ -3,13 +3,14 @@ class Cloud extends MoveableObject {
     width = 500;
     height = 250;
     speed = 0.3;
-
+    x = 200;
+    
     /**
      * loads all immages and start the setX funktion and move funktion
      */
     constructor() {
         super().loadImage('./img/5_background/layers/4_clouds/1.png');
-        this.setX
+        // this.setX
         this.speed = 0.3;
         this.move();
     }

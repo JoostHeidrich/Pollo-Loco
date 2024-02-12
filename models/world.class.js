@@ -82,10 +82,15 @@ class World {
             if (this.character.isCollidingBottle(bottle) && this.BottlestatusBar.percentageBottle < 100) {
                 this.collectBottle(index);
             }
-
         });
 
-        this.thrownBottle.forEach((bottle, index) => {
+        this.level.endboss.forEach(boss => {
+            if (this.character.isCollidingBottle(boss)) {
+                this.HealthstatusBar.setPercentage(0);
+            }
+        });
+
+        this.thrownBottle.forEach(bottle => {
             if (this.endboss.isCollidingBottle(bottle)) {
                 this.endbossHit();
             }
@@ -251,7 +256,6 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

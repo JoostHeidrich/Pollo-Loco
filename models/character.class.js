@@ -6,6 +6,7 @@ class Character extends MoveableObject {
     otherDirection = false;
     dateSet = false;
     time;
+    sleepingSound;
 
     IMAGES_Waiting = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -75,6 +76,7 @@ class Character extends MoveableObject {
     walking_sound = new Audio('audio/running.mp3');
     jumping_sound = new Audio('audio/jump.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
+    sleeping_sound = new Audio('audio/sleeping.mp3');
 
     /**
      * loads all immages and thats the animation, gravity and the movement funktion
@@ -90,10 +92,13 @@ class Character extends MoveableObject {
         this.applyGravity();
         this.movement();
         this.animate();
+        this.playSleepingSound();
+        this.stopSleepingSound();
+
     }
 
     /**
-     * plays the hurt sound of muteSounds is false
+     * plays the hurt sound if muteSounds is false
      */
     hitsound() {
         if (variables.muteSounds === false) {
@@ -102,7 +107,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * plays the waling sound of muteSounds is false
+     * plays the waling sound if muteSounds is false
      */
     walkingSound() {
         if (variables.muteSounds === false) {
@@ -111,12 +116,38 @@ class Character extends MoveableObject {
     }
 
     /**
-     * plays the jumping sound of muteSounds is false
+     * plays the jumping sound if muteSounds is false
      */
     jumpingSound() {
         if (variables.muteSounds === false) {
             this.jumping_sound.play();
         }
+    }
+
+    /**
+     * plays the sleeping sound if muteSounds is false
+     */ 
+    playSleepingSound() {
+        this.sound = document.getElementById("characterSleepingSound");
+        if (variables.muteSounds === false) {
+            this.sound.loop = true;
+            this.sound.play();
+        }
+
+        let sounds = setInterval(() => {
+            if (variables.muteSounds === true) {
+                this.sound.pause();
+                clearInterval(sounds);
+            }
+        }, 100);
+
+    }
+
+        /**
+     * stops the sleeping sound
+     */
+    stopSleepingSound() {
+        this.sound.pause();
     }
 
     /**
@@ -164,17 +195,21 @@ class Character extends MoveableObject {
                 if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
                     this.dateSet = false;
+                    this.stopSleepingSound();
                 } else
                     if (this.isAboveGround()) {
                         this.playAnimation(this.IMAGES_JUMPING);
                         this.dateSet = false;
+                        this.stopSleepingSound();
                     } else
                         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                             this.playAnimation(this.IMAGES_WALKING);
                             this.dateSet = false;
+                            this.stopSleepingSound();
                         } else
                             if (this.dateSet === true && (new Date().getTime() - this.time) / 1000 > 2) {
                                 this.playAnimation(this.IMAGES_LONG_Waiting);
+                                this.playSleepingSound();
                             } else {
                                 this.playAnimation(this.IMAGES_Waiting);
                                 if (this.dateSet === false) {
@@ -222,3 +257,4 @@ class Character extends MoveableObject {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 }
+

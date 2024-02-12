@@ -30,7 +30,8 @@
 </head>
 
 <body onload="init()">
-    <audio id="myAudio" src="audio/music.mp3"></audio>
+    <audio id="backgroundMusic" src="audio/music.mp3"></audio>
+    <audio id="characterSleepingSound" src="audio/sleeping.mp3"></audio>
 
     <h1>El Pollo Loco</h1>
     <h2>Rotate the device for a better experience</h2>
@@ -185,13 +186,14 @@
                 </div>
             </div>
             <!-- explenation  -->
-            <div id="explenation" class="contentCanvas explenation d-none">
+            <div onclick="closeTutorial()" id="explenation" class="contentCanvas explenation d-none">
                 <div class="explenationText">
                     <p>Hold D to Throw Bottles</p>
                     <p>Press &gt to walk right</p>
                     <p>Press &lt; to walk left</p>
                     <p>Press Space to jump</p>
                     <p>Kill the Endboss to win the Game</p>
+                    <p>but dont get to close</p>
                 </div>
             </div>
             <!-- game won screen -->

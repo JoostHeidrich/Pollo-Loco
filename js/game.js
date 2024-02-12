@@ -9,6 +9,9 @@ let keyboard = new Keyboard();
  */
 function init() {
     variables = new Variables();
+    if (this.muteSounds === true) {
+        variables.muteSounds = true;
+    }
 }
 
 /**
@@ -25,7 +28,7 @@ function startGame() {
  * play  the backround music if the valiable muteSounds is not true
  */
 function playBackgroundMusic() {
-    let audio = document.getElementById("myAudio");
+    let audio = document.getElementById("backgroundMusic");
     if (variables.muteSounds === false) {
         audio.loop = true;
         audio.play();
@@ -46,12 +49,20 @@ function openExplenation() {
 }
 
 /**
+ * closes the tutorial
+ */
+function closeTutorial() {
+    document.getElementById('explenation').classList.add('d-none');
+}
+
+/**
  * mutes the sounds when aktive
  */
 function muteSound() {
     document.getElementById('muteButton').classList.add('d-none');
     document.getElementById('unmuteButton').classList.remove('d-none');
     variables.muteSounds = !variables.muteSounds;
+    this.muteSounds = !this.muteSounds;
     playBackgroundMusic();
 }
 
@@ -62,6 +73,7 @@ function unmuteSound() {
     document.getElementById('muteButton').classList.remove('d-none');
     document.getElementById('unmuteButton').classList.add('d-none');
     variables.muteSounds = !variables.muteSounds;
+    this.muteSounds = !this.muteSounds;
     playBackgroundMusic();
 }
 
