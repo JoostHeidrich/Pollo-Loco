@@ -57,6 +57,9 @@ class Endboss extends MoveableObject {
     allert_sound = new Audio('audio/bossAllert.mp3');
     hurt_sound = new Audio('audio/hurtboss.mp3');
 
+    /**
+     * loads all immages and starts the animate and move function
+     */
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_BOSS_Allert);
@@ -67,19 +70,28 @@ class Endboss extends MoveableObject {
         this.move();
     }
 
+    /**
+     * plays the allers sound if muteSounds is false
+     */
     start() {
-        if (variables.muteSounds == false) {
+        if (variables.muteSounds === false) {
             this.allert_sound.play();
             world.allertboss = true;
         }
     }
 
+    /**
+     * plays the hit sound if muteSounds is false
+     */
     hit() {
-        if (variables.muteSounds == false) {
+        if (variables.muteSounds === false) {
             this.hurt_sound.play();
         }
     }
 
+    /**
+     * moves the boss untill x is 6000 and then starts the changeDirection function
+     */
     move() {
         let moveBoss = setInterval(() => {
 
@@ -101,6 +113,9 @@ class Endboss extends MoveableObject {
 
     }
 
+    /**
+     * moves the boss back x is 8000 and then starts the move function
+     */
     changeDirection() {
         let changeBossDirection = setInterval(() => {
 
@@ -122,6 +137,9 @@ class Endboss extends MoveableObject {
         }, 1000 / 60);
     }
 
+    /**
+     * plays the animations of the boss
+     */
     animate() {
         let i = 0;
         let x = 0;
@@ -132,7 +150,7 @@ class Endboss extends MoveableObject {
                 bossDeatchCount++;
             } else
                 if (world.allertboss === true && i < 17) {
-                    this.playAnimationOnce(this.IMAGES_BOSS_Allert);
+                    this.playAnimation(this.IMAGES_BOSS_Allert);
                     i++
                     world.bossResetWalking = true;
                 } else
@@ -169,6 +187,9 @@ class Endboss extends MoveableObject {
         }, 150);
     }
 
+    /**
+     * clears all intervals
+     */
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
         document.getElementById('win').classList.remove('d-none');

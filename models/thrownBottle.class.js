@@ -2,8 +2,10 @@ class thrownBottle extends MoveableObject {
     throwing_Sound = new Audio('audio/throw.mp3')
     bottlehit = false;
     stopThrow = false;
-
+    speedY = 30;
+    variables;
     index;
+
     IMAGES_BOTTLE = [
         "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
         "img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
@@ -22,6 +24,12 @@ class thrownBottle extends MoveableObject {
 
     world;
 
+    /**
+     * loads all immages
+     * @param {number} x - x cordinate
+     * @param {number} y - y cordinate
+     * @param {+ -} direction - the throw direction
+     */
     constructor(x, y, direction) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES_BOTTLE);
@@ -29,17 +37,24 @@ class thrownBottle extends MoveableObject {
         this.throw(x, y, direction);
     }
 
+    /**
+    * sets x cordinat and y cordinat
+    * seht widht and height
+    * starts the applyGravity fuction and throwSound function
+    * checks in wich direction the throw need to go
+    * @param {number} x - x cordinate
+    * @param {number} y - y cordinate
+    * @param {+ -} direction - the throw direction
+    */
     throw(x, y, direction) {
         this.x = x;
         this.y = y;
 
         this.height = 60;
         this.width = 50;
-        this.speedY = 30;
         this.applyGravity();
-        if (variables.muteSounds === false) {
-            this.throwing_Sound.play();
-        }
+        this.throwSound();
+
         if (direction == '+') {
             setInterval(() => {
                 if (this.stopThrow === false) {
@@ -56,6 +71,18 @@ class thrownBottle extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * plays the throwing sound if muteSounds is false
+     */
+    throwSound() {
+        if (variables.muteSounds === false) {
+            this.throwing_Sound.play();
+        }
+    }
+
+    /**
+     * plays the animation
+     */
     animate() {
         let i = 0
 
@@ -75,10 +102,23 @@ class thrownBottle extends MoveableObject {
         }, 100);
     }
 
+    /**
+     * starts the animation
+     * @param {number} index - position in the array
+     */
     play(index) {
         this.index = index
         this.bottlehit = true;
         this.stopThrow = true;
     }
-}
 
+    /**
+     * plays the hitSound if muteSounds is false
+     */
+    EndbossHitSound() {
+        if (variables.muteSounds === false) {
+            variables.bottlehitSound.play();
+        }
+    }
+
+}

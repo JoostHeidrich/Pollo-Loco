@@ -11,7 +11,9 @@ class CoinStatusBar extends DrawableObject {
     ];
 
 
-
+    /**
+     * loads the immages and sets height witdh and the cordinats x and y
+     */
     constructor() {
         super();
         this.loadImages(this.ImagesCoin);
@@ -22,12 +24,18 @@ class CoinStatusBar extends DrawableObject {
         this.setPercentage();
     }
 
+    /**
+     * check the percentage and loads the right immage
+     */
     setPercentage() {
         this.percentageCoin = this.percentageCoin;
         let pathCoin = this.ImagesCoin[this.resolveImageIndex()];
         this.img = this.imageCache[pathCoin];
     }
 
+    /**
+    * @returns the position in the array of the right immage
+    */
     resolveImageIndex() {
         if (this.percentageCoin > 99) {
             return 5;

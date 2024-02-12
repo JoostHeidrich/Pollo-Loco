@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ * generates all the elements on the canvas
+ */
 function initlevel() {
 
     level1 = new level(
@@ -52,6 +55,12 @@ function initlevel() {
             new Bottle()
         ],
         [
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
             new Cloud(),
             new Cloud(),
             new Cloud(),

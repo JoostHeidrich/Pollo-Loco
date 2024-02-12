@@ -11,8 +11,9 @@ class HeathStatusBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png'
     ];
 
-
-
+    /**
+     * loads the immages and sets height witdh and the cordinats x and y
+     */
     constructor() {
         super();
         this.loadImages(this.ImagesHealth);
@@ -23,6 +24,9 @@ class HeathStatusBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+    * check the percentage and loads the right immage
+    */
     setPercentage(percentage) {
         this.percentage = percentage;
         let pathHealth = this.ImagesHealth[this.resolveImageIndex(percentage)];
@@ -32,6 +36,9 @@ class HeathStatusBar extends DrawableObject {
         }
     }
 
+    /**
+    * @returns the position in the array of the right immage
+    */
     resolveImageIndex(percentage) {
         if (percentage == 100) {
             return 5;

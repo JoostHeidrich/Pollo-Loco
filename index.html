@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -33,6 +33,7 @@
     <audio id="myAudio" src="audio/music.mp3"></audio>
 
     <h1>El Pollo Loco</h1>
+    <h2>Rotate the device for a better experience</h2>
 
     <div id="content" class="content">
         <div id="contentCanvas" class="contentCanvas">
@@ -70,7 +71,7 @@
                     </div>
                     <!-- controller -->
                     <div>
-                        <button class="hover">
+                        <button onclick="openExplenation()" class="hover explenationButton">
                             <svg class="controlls" fill="#000000" height="40" width="40" version="1.1" id="Capa_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 viewBox="0 0 59 59" xml:space="preserve">
@@ -175,7 +176,7 @@
             <!-- Mobile controlls -->
             <div class="contentCanvas MobileControlls">
                 <div class="mobileButtons">
-                    <button id="btnJump" onclick="test()">JUMP</button>
+                    <button id="btnJump">JUMP</button>
                     <button id="btnThrow">Throw</button>
                 </div>
                 <div class="mobileButtons">
@@ -183,10 +184,20 @@
                     <button id="btnRight">Right</button>
                 </div>
             </div>
+            <!-- explenation  -->
+            <div id="explenation" class="contentCanvas explenation d-none">
+                <div class="explenationText">
+                    <p>Hold D to Throw Bottles</p>
+                    <p>Press &gt to walk right</p>
+                    <p>Press &lt; to walk left</p>
+                    <p>Press Space to jump</p>
+                    <p>Kill the Endboss to win the Game</p>
+                </div>
+            </div>
             <!-- game won screen -->
             <div class="gameOver d-none" id="win">
                 <img src="img/9_intro_outro_screens/game_over/game over!.png">
-                <button class="playAgain" onclick="initlevel(), startGame()">
+                <button class="playAgain" onclick="init(), initlevel(), startGame()">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
                         viewBox="0,0,256,256">
                         <g transform="">
@@ -212,7 +223,7 @@
             </div>
             <!-- game lost -->
             <div class="gameOver d-none" id="gameOver">
-                <button class="playAgain" onclick="initlevel(), startGame()">
+                <button class="playAgain" onclick="init(), initlevel(), startGame()">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
                         viewBox="0,0,256,256">
                         <g transform="">

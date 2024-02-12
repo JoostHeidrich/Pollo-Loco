@@ -2,23 +2,31 @@ let canvas;
 let world;
 let variables;
 let keyboard = new Keyboard();
-gameOver = false;
 
+
+/**
+ * load all variables when the body is loaded
+ */
 function init() {
+    variables = new Variables();
 }
 
-
+/**
+ * gemerates the world
+ */
 function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    variables = new Variables();
+
     playBackgroundMusic();
 }
 
-
+/**
+ * play  the backround music if the valiable muteSounds is not true
+ */
 function playBackgroundMusic() {
     let audio = document.getElementById("myAudio");
-    if (variables.muteSounds == false) {
+    if (variables.muteSounds === false) {
         audio.loop = true;
         audio.play();
     } else {
@@ -26,6 +34,20 @@ function playBackgroundMusic() {
     }
 }
 
+/**
+ * opens the tutorial
+ */
+function openExplenation() {
+    if (document.getElementById('explenation').classList.contains('d-none')) {
+        document.getElementById('explenation').classList.remove('d-none');
+    } else {
+        document.getElementById('explenation').classList.add('d-none');
+    }
+}
+
+/**
+ * mutes the sounds when aktive
+ */
 function muteSound() {
     document.getElementById('muteButton').classList.add('d-none');
     document.getElementById('unmuteButton').classList.remove('d-none');
@@ -33,6 +55,9 @@ function muteSound() {
     playBackgroundMusic();
 }
 
+/**
+ * unmutes the sounds when aktive
+ */
 function unmuteSound() {
     document.getElementById('muteButton').classList.remove('d-none');
     document.getElementById('unmuteButton').classList.add('d-none');
@@ -40,40 +65,49 @@ function unmuteSound() {
     playBackgroundMusic();
 }
 
+/**
+ * makes the game fullscreen
+ */
 function fullscreen() {
     document.getElementById('contentCanvas').requestFullscreen();
 }
 
+/**
+ * removes fullscreen
+ */
 function exitfullscreen() {
     document.exitFullscreen();
 }
 
+/** 
+ * checks if keys ar pressed
+ */
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode == 39) {
+        keyboard.RIGHT = true;
+    }
+    if (e.keyCode == 37) {
+        keyboard.LEFT = true;
+    }
+    if (e.keyCode == 38) {
+        keyboard.UP = true;
+    }
+    if (e.keyCode == 40) {
+        keyboard.DOWN = true;
+    }
 
-if (this.gameOver == false) {
-    window.addEventListener("keydown", (e) => {
-        if (e.keyCode == 39) {
-            keyboard.RIGHT = true;
-        }
-        if (e.keyCode == 37) {
-            keyboard.LEFT = true;
-        }
-        if (e.keyCode == 38) {
-            keyboard.UP = true;
-        }
-        if (e.keyCode == 40) {
-            keyboard.DOWN = true;
-        }
+    if (e.keyCode == 32) {
+        keyboard.SPACE = true;
+    }
 
-        if (e.keyCode == 32) {
-            keyboard.SPACE = true;
-        }
+    if (e.keyCode == 68) {
+        keyboard.D = true;
+    }
+});
 
-        if (e.keyCode == 68) {
-            keyboard.D = true;
-        }
-    });
-}
-
+/** 
+ * checks if keys ar unpressed
+ */
 window.addEventListener("keyup", (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
@@ -97,6 +131,9 @@ window.addEventListener("keyup", (e) => {
     }
 });
 
+/** 
+ * checks if the button is touched
+ */
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();

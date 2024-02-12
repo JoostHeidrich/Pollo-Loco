@@ -1,14 +1,60 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(fonts/font.ttf);
+}
+
 body {
+    font-family: 'myFirstFont', Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
+    height: 100vh !important;
+    width: 100vw !important;
     background-image: url(img/10_background/background.png);
     margin: 0 !important;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 60px !important;
+    margin: 0;
+    margin-top: 20px;
+}
+
+h2 {
+    display: none;
+    text-align: center;
+}
+
+.explenation {
+    font-size: 40px;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    color: #FA9A04;
+    text-shadow: 0 0 4px #ba5b38;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.explenationText {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 80px;
+}
+
+.explenationText p {
+    margin: 0;
+}
+
+.explenationButton{
+    position: relative;
 }
 
 .d-none {
@@ -59,6 +105,7 @@ canvas {
 }
 
 .startButton {
+    font-family: 'myFirstFont', Arial, Helvetica, sans-serif;
     width: 250px;
     height: 60px;
     margin-top: 20px;
@@ -66,7 +113,7 @@ canvas {
     border: solid 3px #ba5b38;
     background-color: #ffc422;
     padding: 10px !important;
-    font-size: 30px;
+    font-size: 40px;
     z-index: 2;
 }
 
@@ -122,7 +169,7 @@ canvas {
 }
 
 .MobileControlls {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-between;
     align-items: end;
@@ -151,6 +198,9 @@ canvas {
 }
 
 @media only screen and (max-width:720px) {
+    h2 {
+        display: block !important;
+    }
 
     canvas,
     #startIMG,
@@ -179,6 +229,9 @@ canvas {
 }
 
 @media only screen and (max-height:480px) {
+    h1 {
+        display: none;
+    }
 
     canvas,
     .contentCanvas,
@@ -243,5 +296,11 @@ canvas {
 @media not all and (display-mode: fullscreen) {
     #minimize {
         display: none;
+    }
+}
+
+@media (hover: none) {
+    .MobileControlls {
+        display: flex !important;
     }
 }

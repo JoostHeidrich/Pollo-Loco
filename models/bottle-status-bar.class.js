@@ -10,6 +10,9 @@ class BottleStatusBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
     ];
 
+    /**
+     * loads the immages and sets height witdh and the cordinats x and y
+     */
     constructor() {
         super();
         this.loadImages(this.ImagesBottle);
@@ -20,12 +23,18 @@ class BottleStatusBar extends DrawableObject {
         this.setPercentage();
     }
 
+    /**
+     * check the percentage and loads the right immage
+     */
     setPercentage() {
         this.percentageBottle = this.percentageBottle;
         let pathBottle = this.ImagesBottle[this.resolveImageIndex()];
         this.img = this.imageCache[pathBottle];
     }
 
+    /**
+     * @returns the position in the array of the right immage
+     */
     resolveImageIndex() {
         if (this.percentageBottle == 100) {
             return 5;

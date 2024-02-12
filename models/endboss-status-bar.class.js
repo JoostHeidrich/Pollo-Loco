@@ -16,7 +16,10 @@ class BossStatusBar extends MoveableObject {
     ];
 
 
-
+    /**
+     * loads all immages and set height width and y cordinate
+     * starts the moveWithBoss funktion
+     */
     constructor() {
         super().loadImage(this.ImagesHealth[5]);
         this.loadImages(this.ImagesHealth);
@@ -26,16 +29,25 @@ class BossStatusBar extends MoveableObject {
         this.moveWithBoss();
     }
 
+    /**
+     * changes the x condinate to the cordinate of the endboss
+     */
     moveWithBoss() {
         setInterval(() => {
             this.x = this.endboss.x + 30;
         }, 1000 / 60);
     }
 
+    /**
+     * starts the status bar
+     */
     start() {
         this.setPercentage();
     }
 
+    /**
+    * check the percentage and loads the right immage
+    */
     setPercentage() {
         let percentageBoss = this.ImagesHealth[this.resolveImageIndex()];
         this.img = this.imageCache[percentageBoss];
@@ -44,7 +56,9 @@ class BossStatusBar extends MoveableObject {
         }
     }
 
-
+    /**
+    * @returns the position in the array of the right immage
+    */
     resolveImageIndex() {
         if (this.percentageBoss === 100) {
             return 5;

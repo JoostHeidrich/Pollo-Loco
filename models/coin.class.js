@@ -9,6 +9,9 @@ class Coin extends MoveableObject {
         'img/8_coin/coin_2.png',
     ];
 
+    /**
+     * loads all immages and starts the animation funktion and setX funktion
+     */
     constructor() {
         super().loadImage(this.IMAGES_COIN[0]);
         this.loadImages(this.IMAGES_COIN);
@@ -17,14 +20,29 @@ class Coin extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * plays the coin collection sound if muteSounds is false
+     */
+    collectSound() {
+        if (variables.muteSounds === false) {
+            variables.collectCoin.play();
+        }
+    }
+
+    /**
+     * sets the x cordinate in a random position between 200 and 6000
+     */
     setX() {
         this.x = 200 + Math.random() * 60000;
-        if (this.x < 7000) {
+        if (this.x < 6000) {
         } else {
             this.setX();
         }
     }
-    
+
+    /**
+     * plays the animation
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);

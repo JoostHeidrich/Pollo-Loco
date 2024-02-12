@@ -22,6 +22,9 @@ class Chicken extends MoveableObject {
 
     currentImage = 0;
 
+    /**
+     * loads all immages sets a random speed and starts the animation and setX funktion
+     */
     constructor() {
         super().loadImage('./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -32,6 +35,9 @@ class Chicken extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * sets the x condinat random between 300 and 6000
+     */
     setX() {
         this.x = 300 + Math.random() * 20000;
         if (this.x < 6000) {
@@ -40,6 +46,9 @@ class Chicken extends MoveableObject {
         }
     }
 
+    /**
+     * animates the object
+     */
     animate() {
 
         setInterval(() => {
@@ -52,6 +61,9 @@ class Chicken extends MoveableObject {
         }, 200);
     }
 
+    /**
+     * plays the death chicken animation
+     */
     deadChicken() {
         this.allive = false;
         this.speed = 0;
@@ -59,5 +71,14 @@ class Chicken extends MoveableObject {
         clearInterval(this.animation);
         this.playAnimation(this.IMAGES_DEAD);
         this.applyGravity();
+    }
+
+    /**
+     * plays the killsound if muteSounds if false
+     */
+    killSound() {
+        if (variables.muteSounds === false) {
+            variables.crushChickenSound.play();
+        }
     }
 }

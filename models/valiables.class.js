@@ -1,13 +1,17 @@
 class Variables {
+    /**
+     * variables used between clases
+     */
+    muteSounds = false;
+
     // player
     deathPlayer = false;
 
-    
+
     // endboss
     endbossHitAnimation = false;
     stopMovingBoss = false;
     BossDeath = false;
-    muteSounds = false;
 
 
     // Chicken
@@ -16,4 +20,7 @@ class Variables {
 
     // bottle
     bottlehitSound = new Audio('audio/bottle.mp3');
+
+    // coin
+    collectCoin = new Audio('audio/coin.mp3');
 }
