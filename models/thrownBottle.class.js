@@ -58,13 +58,13 @@ class thrownBottle extends MoveableObject {
         if (direction == '+') {
             setInterval(() => {
                 if (this.stopThrow === false) {
-                    this.x += 10;
+                    this.x += 5;
                 }
             }, 25);
         } else if (direction == '-') {
             setInterval(() => {
                 if (this.stopThrow === false) {
-                    this.x -= 10;
+                    this.x -= 5;
                 }
             }, 25);
         }

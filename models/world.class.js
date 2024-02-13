@@ -65,7 +65,19 @@ class World {
                 this.level.enemies[index].killSound();
             } else
                 if (this.character.isCollidingEnemy(enemy) && this.chickenDead(enemy)) {
-                    this.character.hit();
+                    this.character.hit(20);
+                    this.HealthstatusBar.setPercentage(this.character.energy);
+                }
+
+        });
+
+        this.level.smallenemies.forEach((enemy, index) => {
+            if (this.character.isJumpingOn(enemy)) {
+                this.level.smallenemies[index].deadChicken(index);
+                this.level.smallenemies[index].killSound();
+            } else
+                if (this.character.isCollidingEnemy(enemy) && this.chickenDead(enemy)) {
+                    this.character.hit(10);
                     this.HealthstatusBar.setPercentage(this.character.energy);
                 }
 
@@ -96,6 +108,33 @@ class World {
             }
         });
 
+        this.thrownBottle.forEach((bottle, count) => {
+            this.level.enemies.forEach((enemy, index) => {
+                if (enemy.isCollidingBottle((bottle))) {
+                    this.level.enemies[index].deadChicken(index);
+                    this.level.enemies[index].killSound();
+
+                    var removedItem = this.thrownBottle.splice(count, 1)[0];
+                    this.removedthrownBottle.push(removedItem);
+
+                    this.removedthrownBottle[this.removedthrownBottle.length - 1].play(this.removedthrownBottle.length - 1);
+                }
+            });
+        });
+
+        this.thrownBottle.forEach((bottle, count) => {
+            this.level.smallenemies.forEach((smallenemiy, index) => {
+                if (smallenemiy.isCollidingBottle((bottle))) {
+                    this.level.smallenemies[index].deadChicken(index);
+                    this.level.smallenemies[index].killSound();
+
+                    var removedItem = this.thrownBottle.splice(count, 1)[0];
+                    this.removedthrownBottle.push(removedItem);
+
+                    this.removedthrownBottle[this.removedthrownBottle.length - 1].play(this.removedthrownBottle.length - 1);
+                }
+            });
+        });
     }
 
     /**
@@ -109,9 +148,9 @@ class World {
 
         variables.endbossHitAnimation = true;
 
-        this.endboss.hit();
+        this.endboss.hitsound();
 
-        var removedItem = this.thrownBottle.splice(index, 1)[0];
+        let removedItem = this.thrownBottle.splice(index, 1)[0];
         this.removedthrownBottle.push(removedItem);
 
         this.removedthrownBottle[this.removedthrownBottle.length - 1].play(this.removedthrownBottle.length - 1);
@@ -177,9 +216,8 @@ class World {
     * Checks if the character is within a certain range of the end boss's position and triggers the start of the end boss animation.
     */
     startEndbos() {
-        let character1 = this.character.x + 300;
+        let character1 = this.character.x + 500;
         let character2 = this.character.x - 100;
-
 
         if (character1 > this.endboss.x && character2 < this.endboss.x && !this.startEndbossAnimation) {
             this.startEndbossAnimation = true;
@@ -219,6 +257,7 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.smallenemies);
 
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.BossstatusBar);

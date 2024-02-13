@@ -1,5 +1,6 @@
 class level {
     enemies;
+    smallenemies;
     endboss;
     coins;
     bottle;
@@ -17,8 +18,9 @@ class level {
  * @param {Array} clouds - An array of clouds in the background.
  * @param {Array} backgroundObjects - An array of background objects in the game.
  */
-    constructor(enemies, endboss, coins, bottle, clouds, backgroundObjects) {
+    constructor(enemies, smallenemies, endboss, coins, bottle, clouds, backgroundObjects) {
         this.enemies = enemies;
+        this.smallenemies = smallenemies;
         this.endboss = endboss;
         this.coins = coins;
         this.bottle = bottle;

@@ -19,6 +19,18 @@ function initlevel() {
             new Chicken()
         ],
         [
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken(),
+            new MiniChicken()
+        ],
+        [
             new Endboss()
         ],
         [

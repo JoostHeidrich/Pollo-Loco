@@ -23,9 +23,7 @@ class MoveableObject extends DrawableObject {
      * @returns true if y is unter 110
      */
     isAboveGround() {
-        if (this instanceof thrownBottle) {
-            return true;
-        } else if (this instanceof Chicken) {
+        if (this instanceof thrownBottle || this instanceof Chicken || this instanceof MiniChicken) {
             return true;
         } else {
             return this.y < 110;
@@ -83,12 +81,12 @@ class MoveableObject extends DrawableObject {
     /**
      * checks if the character got hit
      */
-    hit() {
+    hit(energyLost) {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
 
         if (timepassed > 1) {
-            this.energy -= 10;
+            this.energy -= energyLost;
             this.lastHit = new Date().getTime();
             this.world.character.hitsound();
         } else

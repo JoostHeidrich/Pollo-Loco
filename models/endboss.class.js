@@ -12,20 +12,12 @@ class Endboss extends MoveableObject {
 
     IMAGES_BOSS_Allert = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
-        'img/4_enemie_boss_chicken/2_alert/G5.png',
-        'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G7.png',
-        'img/4_enemie_boss_chicken/2_alert/G7.png',
-        'img/4_enemie_boss_chicken/2_alert/G8.png',
         'img/4_enemie_boss_chicken/2_alert/G8.png',
         'img/4_enemie_boss_chicken/2_alert/G9.png',
-        'img/4_enemie_boss_chicken/2_alert/G9.png',
-        'img/4_enemie_boss_chicken/2_alert/G10.png',
         'img/4_enemie_boss_chicken/2_alert/G10.png',
         'img/4_enemie_boss_chicken/2_alert/G11.png',
-        'img/4_enemie_boss_chicken/2_alert/G11.png',
-        'img/4_enemie_boss_chicken/2_alert/G12.png',
         'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
 
@@ -74,16 +66,17 @@ class Endboss extends MoveableObject {
      * plays the allers sound if muteSounds is false
      */
     start() {
+        world.allertboss = true;
+        this.speed = 6;
         if (variables.muteSounds === false) {
             this.allert_sound.play();
-            world.allertboss = true;
         }
     }
 
     /**
      * plays the hit sound if muteSounds is false
      */
-    hit() {
+    hitsound() {
         if (variables.muteSounds === false) {
             this.hurt_sound.play();
         }
@@ -149,7 +142,7 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_BOSS_DEATH);
                 bossDeatchCount++;
             } else
-                if (world.allertboss === true && i < 17) {
+                if (world.allertboss === true && i < 9) {
                     this.playAnimation(this.IMAGES_BOSS_Allert);
                     i++
                     world.bossResetWalking = true;
@@ -171,7 +164,7 @@ class Endboss extends MoveableObject {
                 this.clearAllIntervals();
             }
 
-            if (i === 16 && world.bossResetWalking === true) {
+            if (i === 8 && world.bossResetWalking === true) {
                 world.allertboss = false;
                 world.bossResetWalking = false;
                 variables.stopMovingBoss = false;
