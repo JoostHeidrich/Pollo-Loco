@@ -126,7 +126,7 @@ class Character extends MoveableObject {
 
     /**
      * plays the sleeping sound if muteSounds is false
-     */ 
+     */
     playSleepingSound() {
         this.sound = document.getElementById("characterSleepingSound");
         if (variables.muteSounds === false) {
@@ -143,9 +143,9 @@ class Character extends MoveableObject {
 
     }
 
-        /**
-     * stops the sleeping sound
-     */
+    /**
+ * stops the sleeping sound
+ */
     stopSleepingSound() {
         this.sound.pause();
     }
@@ -186,6 +186,7 @@ class Character extends MoveableObject {
      */
     animate() {
         let deathAnimationCounter = 0;
+        let jumpingCount = 0
 
         setInterval(() => {
             if (variables.deathPlayer === true) {
@@ -197,10 +198,13 @@ class Character extends MoveableObject {
                     this.dateSet = false;
                     this.stopSleepingSound();
                 } else
-                    if (this.isAboveGround()) {
+                    if (this.isAboveGround() && jumpingCount < 9) {
                         this.playAnimation(this.IMAGES_JUMPING);
                         this.dateSet = false;
                         this.stopSleepingSound();
+                        jumpingCount++;
+                    } else if (jumpingCount === 9) {
+                        jumpingCount = 0;
                     } else
                         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                             this.playAnimation(this.IMAGES_WALKING);

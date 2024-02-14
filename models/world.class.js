@@ -98,7 +98,8 @@ class World {
 
         this.level.endboss.forEach(boss => {
             if (this.character.isCollidingBottle(boss)) {
-                this.HealthstatusBar.setPercentage(0);
+                this.character.hit(40);
+                this.HealthstatusBar.setPercentage(this.character.energy);
             }
         });
 
@@ -108,22 +109,22 @@ class World {
             }
         });
 
-        this.thrownBottle.forEach((bottle, count) => {
-            this.level.enemies.forEach((enemy, index) => {
+        this.level.enemies.forEach((enemy, index) => {
+            this.thrownBottle.forEach((bottle, count) => {
                 if (enemy.isCollidingBottle((bottle))) {
-                    this.level.enemies[index].deadChicken(index);
-                    this.level.enemies[index].killSound();
-
                     var removedItem = this.thrownBottle.splice(count, 1)[0];
                     this.removedthrownBottle.push(removedItem);
 
                     this.removedthrownBottle[this.removedthrownBottle.length - 1].play(this.removedthrownBottle.length - 1);
+
+                    this.level.enemies[index].deadChicken(index);
+                    this.level.enemies[index].killSound();
                 }
             });
         });
 
-        this.thrownBottle.forEach((bottle, count) => {
-            this.level.smallenemies.forEach((smallenemiy, index) => {
+        this.level.smallenemies.forEach((smallenemiy, index) => {
+            this.thrownBottle.forEach((bottle, count) => {
                 if (smallenemiy.isCollidingBottle((bottle))) {
                     this.level.smallenemies[index].deadChicken(index);
                     this.level.smallenemies[index].killSound();

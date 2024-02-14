@@ -73,9 +73,9 @@ class MoveableObject extends DrawableObject {
     isJumpingOn(mo) {
         return this.x + this.width > mo.x &&
             this.x < mo.x &&
-            this.y + this.height < 370 &&
-            this.y + this.height > 340 &&
-            this.speedY < -5
+            this.y + this.height < mo.y + (mo.height / 2) &&
+            this.y + this.height > mo.y &&
+            this.speedY < -2
     }
 
     /**

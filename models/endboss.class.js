@@ -67,7 +67,7 @@ class Endboss extends MoveableObject {
      */
     start() {
         world.allertboss = true;
-        this.speed = 6;
+        this.speed = 4;
         if (variables.muteSounds === false) {
             this.allert_sound.play();
         }

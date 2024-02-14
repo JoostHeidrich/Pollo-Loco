@@ -315,4 +315,12 @@ canvas {
     .MobileControlls {
         display: flex !important;
     }
+
+    #minimize {
+        display: none;
+    }
+
+    #fullscreen {
+        display: none !important;
+    }
 }
