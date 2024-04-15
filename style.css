@@ -1,326 +1,298 @@
 @font-face {
-    font-family: myFirstFont;
-    src: url(fonts/font.ttf);
+  font-family: myFirstFont;
+  src: url(fonts/font.ttf);
 }
 
 body {
-    font-family: 'myFirstFont', Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh !important;
-    width: 100vw !important;
-    background-image: url(img/10_background/background.png);
-    margin: 0 !important;
-    overflow: hidden;
+  font-family: "myFirstFont", Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh !important;
+  width: 100vw !important;
+  background-image: url(img/10_background/background.png);
+  margin: 0 !important;
 }
 
 h1 {
-    font-size: 60px !important;
-    margin: 0;
-    margin-top: 20px;
+  font-size: 60px !important;
+  margin: 0;
+  margin-top: 20px;
 }
 
 .rotateDevice {
-    font-family: Arial, Helvetica, sans-serif;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    text-align: center;
-    z-index: 11;
+  font-family: Arial, Helvetica, sans-serif;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  text-align: center;
+  z-index: 11;
 }
 
 .rotateDevice h2 {
-    color: white;
-    font-size: 60px !important;
+  color: white;
+  font-size: 60px !important;
 }
 
 .explenation {
-    font-size: 40px;
-    z-index: 2;
-    background-color: rgba(0, 0, 0, 0.4);
-    text-align: center;
-    color: #FA9A04;
-    text-shadow: 0 0 4px #ba5b38;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 40px;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: #fa9a04;
+  text-shadow: 0 0 4px #ba5b38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .explenationText {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .explenationText p {
-    margin: 0;
+  margin: 0;
 }
 
 .explenationButton {
-    position: relative;
+  position: relative;
 }
 
 .d-none {
-    display: none !important;
+  display: none !important;
 }
 
 .hover:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 canvas {
-    background-color: #F4AC58;
-    position: absolute;
-    width: 720px;
-    height: 480px;
+  background-color: #f4ac58;
+  position: absolute;
+  width: 720px;
+  height: 480px;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
 }
 
 .contentCanvas {
-    position: absolute;
-    width: 720px;
-    height: 480px;
+  position: absolute;
+  width: 720px;
+  height: 480px;
 }
 
 .header {
-    position: absolute;
+  position: absolute;
 }
 
 #startIMG {
-    position: absolute;
-    width: 720px;
-    height: 480px;
+  position: absolute;
+  width: 720px;
+  height: 480px;
 }
 
 .startButtonContainer {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    width: 720px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 720px;
 }
 
 .startButton {
-    font-family: 'myFirstFont', Arial, Helvetica, sans-serif;
-    width: 250px;
-    height: 60px;
-    margin-top: 20px;
-    transform: skew(-20deg);
-    border: solid 3px #ba5b38;
-    background-color: #ffc422;
-    padding: 10px !important;
-    font-size: 40px;
-    z-index: 2;
+  font-family: "myFirstFont", Arial, Helvetica, sans-serif;
+  width: 250px;
+  height: 60px;
+  margin-top: 20px;
+  transform: skew(-20deg);
+  border: solid 3px #ba5b38;
+  background-color: #ffc422;
+  padding: 10px !important;
+  font-size: 40px;
+  z-index: 2;
 }
 
 .ControllButtons {
-    z-index: 1;
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-    margin-right: 20px;
-    width: 700px;
-
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 700px;
 }
 
 .ControllButtons button {
-    background-color: transparent !important;
-    border: none;
+  background-color: transparent !important;
+  border: none;
 }
 
 .fullscreen {
-    width: 100vw !important;
-    height: 100vh !important;
+  width: 100vw !important;
+  height: 100vh !important;
 }
 
 .gameOver {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    width: 720px;
-    height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 720px;
+  height: 480px;
 }
 
 .gameOver img {
-    object-fit: cover;
-    z-index: 2;
-    flex-shrink: 0;
-    width: 100%;
-    height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .playAgain {
-    position: absolute;
-    z-index: 10;
-    font-size: 20px;
-    background-color: transparent;
-    border: none;
-    margin-top: 40%;
+  position: absolute;
+  z-index: 10;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  margin-top: 40%;
 }
 
 .playAgain:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .MobileControlls {
-    display: none;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: end;
-    background: transparent;
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+  background: transparent;
 }
 
 .MobileControlls button {
-    margin-bottom: 20px !important;
-    width: 60px;
-    height: 60px;
-    border-radius: 35px;
-    border: solid 3px #ba5b38;
-    background-color: #ffc422;
+  margin-bottom: 20px !important;
+  width: 60px;
+  height: 60px;
+  border-radius: 35px;
+  border: solid 3px #ba5b38;
+  background-color: #ffc422;
 }
 
 .MobileControlls button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .mobileButtons {
-    display: flex;
-    z-index: 10;
-    gap: 20px !important;
-    margin-right: 20px;
+  display: flex;
+  z-index: 10;
+  gap: 20px !important;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+@media only screen and (max-width: 720px) {
+  canvas,
+  #startIMG,
+  .startButtonContainer,
+  .ControllButtons,
+  .ControllButtons,
+  .gameOver {
+    aspect-ratio: 3/2;
+    width: 100vw;
+    height: auto;
+  }
+
+  .startButtonContainer {
+    justify-content: start;
+  }
+
+  .contentCanvas {
+    aspect-ratio: 3/2;
+    width: 100vw;
+    height: auto;
+  }
+
+  .startButton {
     margin-left: 20px;
+  }
 }
 
-@media only screen and (max-width:720px) {
+@media only screen and (max-height: 480px) {
+  h1 {
+    display: none;
+  }
 
-    canvas,
-    #startIMG,
-    .startButtonContainer,
-    .ControllButtons,
-    .ControllButtons,
-    .gameOver {
-        aspect-ratio: 3/2;
-        width: 100vw;
-        height: auto;
-    }
-
-    .startButtonContainer {
-        justify-content: start;
-    }
-
-    .contentCanvas {
-        aspect-ratio: 3/2;
-        width: 100vw;
-        height: auto;
-    }
-
-    .startButton {
-        margin-left: 20px;
-    }
-}
-
-@media only screen and (max-height:480px) {
-    h1 {
-        display: none;
-    }
-
-    canvas,
-    .contentCanvas,
-    #startIMG,
-    .startButtonContainer,
-    .ControllButtons,
-    .ControllButtons,
-    .gameOver {
-        height: 100vh;
-    }
-
+  canvas,
+  .contentCanvas,
+  #startIMG,
+  .startButtonContainer,
+  .ControllButtons,
+  .ControllButtons,
+  .gameOver {
+    height: 100vh;
+  }
 }
 
 @media all and (display-mode: fullscreen) {
+  #startIMG,
+  #canvas,
+  #win,
+  #gameOver,
+  .startButtonContainer,
+  .MobileControlls {
+    width: 100vw !important;
+    height: 100vh !important;
+  }
 
-    #startIMG,
-    #canvas,
-    #win,
-    #gameOver,
-    .startButtonContainer,
-    .MobileControlls {
-        width: 100vw !important;
-        height: 100vh !important;
-    }
-
-    .startButtonContainer,
-    .ControllButtons {
-        width: 100vw !important;
-    }
-
-    #minimize {
-        margin-right: 20px !important;
-
-    }
-
-    #fullscreen {
-        display: none !important;
-    }
+  .startButtonContainer,
+  .ControllButtons {
+    width: 100vw !important;
+  }
 }
 
-@media only screen and (max-width:650px) {
-    .rotateDevice {
-        display: flex !important;
-    }
+@media only screen and (max-width: 650px) {
+  .rotateDevice {
+    display: flex !important;
+  }
 
-    .startButton {
-        width: 150px !important;
-        font-size: 20px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
+  .startButton {
+    width: 150px !important;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
 
-    .ControllButtons {
-        margin-top: 10px;
-    }
+  .ControllButtons {
+    margin-top: 10px;
+  }
 
-    .ControllButtons svg {
-        width: 30px !important;
-    }
+  .ControllButtons svg {
+    width: 30px !important;
+  }
 
-    .playAgain svg {
-        width: 70px;
-    }
-}
-
-@media not all and (display-mode: fullscreen) {
-    #minimize {
-        display: none;
-    }
+  .playAgain svg {
+    width: 70px;
+  }
 }
 
 @media (hover: none) {
-    .MobileControlls {
-        display: flex !important;
-    }
-
-    #minimize {
-        display: none;
-    }
-
-    #fullscreen {
-        display: none !important;
-    }
+  .MobileControlls {
+    display: flex !important;
+  }
 }
